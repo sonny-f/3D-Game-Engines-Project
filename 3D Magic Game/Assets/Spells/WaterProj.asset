@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c486e0b57e20864a93a91c9a2fe3a77, type: 3}
-  m_Name: Fireball
+  m_Name: WaterProj
   m_EditorClassIdentifier: 
-  Damage: 25
-  manaCost: 15
+  Damage: 15
+  manaCost: 10
   Lifetime: 2
   Speed: 15
   SpellRadius: 0.5

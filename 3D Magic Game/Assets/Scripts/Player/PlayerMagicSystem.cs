@@ -3,6 +3,10 @@ using UnityEngine;
 public class PlayerMagicSystem : MonoBehaviour
 {
     [Header("Spell Casting")]
+    public GameObject SpellSelector;
+    public GameObject Fireball;
+    public GameObject WaterProj;
+    [Space(10)]
     [SerializeField] private Spell spellToCast;
     [SerializeField] private float maxMana = 100f;
     [SerializeField] private float currentMana;
@@ -62,10 +66,30 @@ public class PlayerMagicSystem : MonoBehaviour
                 currentMana = maxMana;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SpellSelector.SetActive(true);
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     void CastSpell()
     {
         Instantiate(spellToCast, castPoint.position, castPoint.rotation);
+    }
+
+    public void ShootFireball()
+    {
+        spellToCast = Fireball.GetComponent<Spell>();
+        SpellSelector.SetActive(false);
+    }
+
+    public void ShootWaterProj()
+    {
+        spellToCast = WaterProj.GetComponent<Spell>();
+        SpellSelector.SetActive(false);
     }
 }
