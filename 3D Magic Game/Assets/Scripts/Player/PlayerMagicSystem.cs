@@ -85,11 +85,15 @@ public class PlayerMagicSystem : MonoBehaviour
     {
         spellToCast = Fireball.GetComponent<Spell>();
         SpellSelector.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void ShootWaterProj()
     {
         spellToCast = WaterProj.GetComponent<Spell>();
         SpellSelector.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
