@@ -13,6 +13,11 @@ public class PlayerMagicSystem : MonoBehaviour
     public GameObject lightningBorder;
     public GameObject psychicBorder;
     [Space(10)]
+    public GameObject staffColourFire;
+    public GameObject staffColourWater;
+    public GameObject staffColourLightning;
+    public GameObject staffColourPsychic;
+    [Space(10)]
     [SerializeField] private Spell spellToCast;
     [SerializeField] private float maxMana = 100f;
     [SerializeField] private float currentMana;
@@ -106,6 +111,11 @@ public class PlayerMagicSystem : MonoBehaviour
         fireballBorder.SetActive(true);
         waterProjBorder.SetActive(false);
         psychicBorder.SetActive(false);
+
+        staffColourFire.SetActive(true);
+        staffColourWater.SetActive(false);
+        staffColourLightning.SetActive(false);
+        staffColourPsychic.SetActive(false);
     }
 
     public void ShootWaterProj()
@@ -116,6 +126,11 @@ public class PlayerMagicSystem : MonoBehaviour
         fireballBorder.SetActive(false);
         waterProjBorder.SetActive(true);
         psychicBorder.SetActive(false);
+
+        staffColourFire.SetActive(false);
+        staffColourWater.SetActive(true);
+        staffColourLightning.SetActive(false);
+        staffColourPsychic.SetActive(false);
     }
 
     public void ShootLightning()
@@ -124,6 +139,11 @@ public class PlayerMagicSystem : MonoBehaviour
         fireballBorder.SetActive(false);
         waterProjBorder.SetActive(false);
         psychicBorder.SetActive(false);
+
+        staffColourFire.SetActive(false);
+        staffColourWater.SetActive(false);
+        staffColourLightning.SetActive(true);
+        staffColourPsychic.SetActive(false);
     }
 
     public void ShootPsychic()
@@ -132,5 +152,10 @@ public class PlayerMagicSystem : MonoBehaviour
         fireballBorder.SetActive(false);
         waterProjBorder.SetActive(false);
         psychicBorder.SetActive(true);
+
+        staffColourFire.SetActive(false);
+        staffColourWater.SetActive(false);
+        staffColourLightning.SetActive(false);
+        staffColourPsychic.SetActive(true);
     }
 }

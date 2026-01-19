@@ -6517,7 +6517,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &948754556
 Transform:
   m_ObjectHideFlags: 0
@@ -8237,8 +8237,12 @@ MonoBehaviour:
   Lightning: {fileID: 0}
   fireballBorder: {fileID: 808462489}
   waterProjBorder: {fileID: 869174934}
-  lightningBorder: {fileID: 0}
+  lightningBorder: {fileID: 42671254}
   psychicBorder: {fileID: 1211019965}
+  staffColourFire: {fileID: 928517438}
+  staffColourWater: {fileID: 619363430}
+  staffColourLightning: {fileID: 1699179595}
+  staffColourPsychic: {fileID: 948754555}
   spellToCast: {fileID: 1604405032171642457, guid: 7400f0a7947cf2b4594663ba49e7d29f, type: 3}
   maxMana: 100
   currentMana: 100
