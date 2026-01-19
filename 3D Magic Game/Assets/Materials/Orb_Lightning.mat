@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Orb
+  m_Name: Orb_Lightning
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -117,9 +117,9 @@ Material:
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 0.5385013, b: 0, a: 1}
-    - _Color: {r: 1, g: 0.53850126, b: 0, a: 1}
-    - _EmissionColor: {r: 955.42554, g: 320.6456, b: 0, a: 1}
+    - _BaseColor: {r: 0.8394886, g: 1, b: 0, a: 1}
+    - _Color: {r: 0.8394886, g: 1, b: 0, a: 1}
+    - _EmissionColor: {r: 2.6043463, g: 2.6082382, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

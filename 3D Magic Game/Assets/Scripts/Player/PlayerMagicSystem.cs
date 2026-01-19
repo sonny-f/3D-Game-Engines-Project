@@ -3,9 +3,15 @@ using UnityEngine;
 public class PlayerMagicSystem : MonoBehaviour
 {
     [Header("Spell Casting")]
-    public GameObject SpellSelector;
     public GameObject Fireball;
     public GameObject WaterProj;
+    public GameObject Psychic;
+    public GameObject Lightning;
+    [Space(10)]
+    public GameObject fireballBorder;
+    public GameObject waterProjBorder;
+    public GameObject lightningBorder;
+    public GameObject psychicBorder;
     [Space(10)]
     [SerializeField] private Spell spellToCast;
     [SerializeField] private float maxMana = 100f;
@@ -24,6 +30,8 @@ public class PlayerMagicSystem : MonoBehaviour
         controls = new InputSystem_Actions();
 
         currentMana = maxMana;
+
+        ShootFireball();
     }
 
     private void OnEnable()
@@ -67,12 +75,21 @@ public class PlayerMagicSystem : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            SpellSelector.SetActive(true);
-
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            ShootFireball();
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            ShootWaterProj();
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            ShootLightning();
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            ShootPsychic();
         }
     }
 
@@ -84,16 +101,36 @@ public class PlayerMagicSystem : MonoBehaviour
     public void ShootFireball()
     {
         spellToCast = Fireball.GetComponent<Spell>();
-        SpellSelector.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+
+        lightningBorder.SetActive(false);
+        fireballBorder.SetActive(true);
+        waterProjBorder.SetActive(false);
+        psychicBorder.SetActive(false);
     }
 
     public void ShootWaterProj()
     {
         spellToCast = WaterProj.GetComponent<Spell>();
-        SpellSelector.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+
+        lightningBorder.SetActive(false);
+        fireballBorder.SetActive(false);
+        waterProjBorder.SetActive(true);
+        psychicBorder.SetActive(false);
+    }
+
+    public void ShootLightning()
+    {
+        lightningBorder.SetActive(true);
+        fireballBorder.SetActive(false);
+        waterProjBorder.SetActive(false);
+        psychicBorder.SetActive(false);
+    }
+
+    public void ShootPsychic()
+    {
+        lightningBorder.SetActive(false);
+        fireballBorder.SetActive(false);
+        waterProjBorder.SetActive(false);
+        psychicBorder.SetActive(true);
     }
 }
