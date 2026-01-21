@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 5f;
     public float jumpForce = 2f;
     public float gravity = -9.81f;
+    public float sprintSpeed = 5f;
 
     [Header("Air Control")]
     [Tooltip("Fraction of ground speed allowed while airborne (0 = no control, 1 = full control)")]
@@ -27,8 +28,17 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        //horizontal input
-        Vector3 move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = sprintSpeed;
+        }
+        else
+        {
+            speed = 5f;
+        }
+
+            //horizontal input
+            Vector3 move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
 
         //ensure a small downward force when grounded
         if (controller.isGrounded && velocity.y < 0)

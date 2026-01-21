@@ -7,7 +7,7 @@ public class EnemyAI : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
-    public float health;
+    public float health = 100f;
 
     [Header("Patroling")]
     public Vector3 walkPoint;
@@ -17,8 +17,8 @@ public class EnemyAI : MonoBehaviour
     [Header("Attacking")]
     public float timeBetweenAttacks;
     bool alreadyAttacked;
-    public GameObject projectile;
-    public GameObject castPoint;
+    public Spell projectile;
+    public Transform castPoint;
 
     [Header("States")]
     public float sightRange, attackRange;
@@ -49,6 +49,11 @@ public class EnemyAI : MonoBehaviour
         if (playerInSightRange && playerInAttackRange)
         {
             AttackPlayer();
+        }
+
+        if (health <= 0)
+        {
+            Invoke(nameof(DestroyEnemy), .5f);
         }
     }
 
@@ -95,7 +100,7 @@ public class EnemyAI : MonoBehaviour
 
     private void AttackPlayer()
     {
-        //Make sure enemy doesnt move
+        //Make sure enemy doesn't move
         agent.SetDestination(transform.position);
 
         transform.LookAt(player);
@@ -109,6 +114,12 @@ public class EnemyAI : MonoBehaviour
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
+
+            /*
+            Instantiate(projectile, castPoint.position, castPoint.rotation);
+
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks); */
         }
     }
 
@@ -117,18 +128,8 @@ public class EnemyAI : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-
-        if(health <= 0)
-        {
-            Invoke(nameof(DestroyEnemy), .5f);
-        }
-    }
-
     private void DestroyEnemy()
     {
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 }

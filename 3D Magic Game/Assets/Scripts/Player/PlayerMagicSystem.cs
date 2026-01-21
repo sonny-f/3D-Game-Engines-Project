@@ -135,6 +135,8 @@ public class PlayerMagicSystem : MonoBehaviour
 
     public void ShootLightning()
     {
+        spellToCast = Lightning.GetComponent<Spell>();
+
         lightningBorder.SetActive(true);
         fireballBorder.SetActive(false);
         waterProjBorder.SetActive(false);
