@@ -30,6 +30,9 @@ public class EnemyAI : MonoBehaviour
     {
         player = GameObject.Find("PlayerObj").transform;
         agent = GetComponent<NavMeshAgent>();
+
+        agent.updatePosition = true;
+        agent.updateRotation = true;
     }
 
     private void Update()
@@ -61,8 +64,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Patroling()
     {
-        float moveSpeed = agent.velocity.magnitude;
-        animator.SetFloat("Speed", moveSpeed);
+        animator.SetFloat("Speed", agent.velocity.magnitude);
 
         if (!walkPointSet)
         {
@@ -130,5 +132,14 @@ public class EnemyAI : MonoBehaviour
     private void DestroyEnemy()
     {
         Destroy(this.gameObject);
+    }
+
+    void OnAnimatorMove()
+    {
+        // Completely ignore animation movement
+        animator.ApplyBuiltinRootMotion();
+
+        // Force model to stay at agent position
+        transform.position = agent.nextPosition;
     }
 }
