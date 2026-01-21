@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c486e0b57e20864a93a91c9a2fe3a77, type: 3}
+  m_Script: {fileID: 11500000, guid: 420980b51ce12ba4a9f676e8bec47009, type: 3}
   m_Name: Boulder
   m_EditorClassIdentifier: 
-  Damage: 20
-  manaCost: 0
+  Damage: 25
   Lifetime: 2
   Speed: 10
-  SpellRadius: 0.5
+  SpellRadius: 0.1

@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 2f;
     public float gravity = -9.81f;
     public float sprintSpeed = 5f;
+    [Space(10)]
+    public Camera playerCamera;
 
     [Header("Air Control")]
     [Tooltip("Fraction of ground speed allowed while airborne (0 = no control, 1 = full control)")]
@@ -31,10 +33,12 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKey(KeyCode.LeftShift))
         {
             speed = sprintSpeed;
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 80f, Time.deltaTime * 5f);
         }
         else
         {
             speed = 5f;
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 60f, Time.deltaTime * 5f);
         }
 
             //horizontal input

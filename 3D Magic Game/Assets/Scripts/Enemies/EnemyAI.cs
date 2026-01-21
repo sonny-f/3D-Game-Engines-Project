@@ -8,16 +8,18 @@ public class EnemyAI : MonoBehaviour
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
     public float health = 100f;
+    public Animator animator;
 
     [Header("Patroling")]
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
+    public float stoppingTime;
 
     [Header("Attacking")]
     public float timeBetweenAttacks;
     bool alreadyAttacked;
-    public Spell projectile;
+    public EnemySpells projectile;
     public Transform castPoint;
 
     [Header("States")]
@@ -59,7 +61,9 @@ public class EnemyAI : MonoBehaviour
 
     private void Patroling()
     {
-        if(!walkPointSet)
+        animator.SetBool("isWalking", true);
+
+        if (!walkPointSet)
         {
             SearchWalkPoint();
         }
@@ -68,6 +72,8 @@ public class EnemyAI : MonoBehaviour
         {
             agent.SetDestination(walkPoint);
         }
+
+
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
@@ -108,18 +114,10 @@ public class EnemyAI : MonoBehaviour
         if (!alreadyAttacked)
         {
             //Attack code here
-            Rigidbody rb = Instantiate(projectile, castPoint.transform.position, castPoint.transform.rotation).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
-
-            /*
             Instantiate(projectile, castPoint.position, castPoint.rotation);
 
             alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks); */
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
 

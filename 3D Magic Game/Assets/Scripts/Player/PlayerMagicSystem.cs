@@ -36,6 +36,7 @@ public class PlayerMagicSystem : MonoBehaviour
 
         currentMana = maxMana;
 
+        //set base spell to fireball
         ShootFireball();
     }
 
@@ -53,6 +54,8 @@ public class PlayerMagicSystem : MonoBehaviour
     {
         bool isSpellCastHeldDown = controls.Player.SpellCast.ReadValue<float>() > 0.1;
         bool isNotBroke = currentMana - spellToCast.spellToCast.manaCost >= 0;
+
+        //cast spell
         if (!castingMagic && isSpellCastHeldDown && isNotBroke)
         {
             castingMagic = true;
@@ -61,7 +64,8 @@ public class PlayerMagicSystem : MonoBehaviour
             CastSpell();
         }
 
-        if(castingMagic)
+        //manage mana regen
+        if (castingMagic)
         {
             castTimer += Time.deltaTime;
 
@@ -71,7 +75,9 @@ public class PlayerMagicSystem : MonoBehaviour
             }
         }
 
-        if(currentMana < maxMana && !castingMagic)
+
+        //regenerate mana
+        if (currentMana < maxMana && !castingMagic)
         {
             currentMana += manaRegenRate * Time.deltaTime;
             if(currentMana > maxMana)
@@ -150,6 +156,8 @@ public class PlayerMagicSystem : MonoBehaviour
 
     public void ShootPsychic()
     {
+        spellToCast = Psychic.GetComponent<Spell>();
+
         lightningBorder.SetActive(false);
         fireballBorder.SetActive(false);
         waterProjBorder.SetActive(false);
