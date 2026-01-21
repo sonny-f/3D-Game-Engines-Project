@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c486e0b57e20864a93a91c9a2fe3a77, type: 3}
   m_Name: Psychic
   m_EditorClassIdentifier: 
-  Damage: 10
-  manaCost: 5
+  Damage: 20
+  manaCost: 15
   Lifetime: 2
-  Speed: 15
+  Speed: 10
   SpellRadius: 0.5

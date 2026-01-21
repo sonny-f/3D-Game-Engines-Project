@@ -61,7 +61,8 @@ public class EnemyAI : MonoBehaviour
 
     private void Patroling()
     {
-        animator.SetBool("isWalking", true);
+        float moveSpeed = agent.velocity.magnitude;
+        animator.SetFloat("Speed", moveSpeed);
 
         if (!walkPointSet)
         {

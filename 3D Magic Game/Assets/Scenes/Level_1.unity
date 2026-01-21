@@ -586,7 +586,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 225451022}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.03
   m_Speed: 3.5
   m_Acceleration: 2
   avoidancePriority: 50
@@ -595,7 +595,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1.22
+  m_Height: 0.05
   m_BaseOffset: -0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -620,6 +620,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   health: 100
+  animator: {fileID: 1568306502}
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 15
   stoppingTime: 0
@@ -639,9 +640,9 @@ Transform:
   m_GameObject: {fileID: 225451022}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.715, y: 1.07, z: -14.87}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -3.715, y: -2.626, z: -14.87}
+  m_LocalScale: {x: 25.75, y: 25.75, z: 25.75}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1029852878}
   - {fileID: 1568306501}
@@ -666,10 +667,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4660576
-  m_Height: 1.4327191
+  m_Radius: 0.019659253
+  m_Height: 0.056942116
   m_Direction: 1
-  m_Center: {x: -0.0041404963, y: 0.5552818, z: -0.049263775}
+  m_Center: {x: -0.00020136648, y: 0.023971183, z: -0.0005226112}
 --- !u!1 &230088568
 GameObject:
   m_ObjectHideFlags: 0
@@ -1268,7 +1269,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -1927,7 +1928,7 @@ Transform:
   m_GameObject: {fileID: 1029852877}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.04508996, y: 1.56813, z: 2.929}
+  m_LocalPosition: {x: 0.04508996, y: 1.22, z: 1.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2844,6 +2845,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1568306501}
+  - component: {fileID: 1568306502}
   m_Layer: 0
   m_Name: Golem
   m_TagString: Untagged
@@ -2861,13 +2863,35 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 25.05, y: 25.05, z: 25.05}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1240480997}
   - {fileID: 329124344}
   m_Father: {fileID: 225451025}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1568306502
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568306500}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1414f421f9dde0a4e8626aaa1b7d9cfe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &1570282602 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 413c26c4e8d53614fb1e3e42668dd957, type: 3}
@@ -3699,7 +3723,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &313861588554295285
 Transform:
   m_ObjectHideFlags: 0
@@ -4195,7 +4219,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -4491,8 +4515,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7159735198422003894}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.05, y: 0.84, z: 0}
+  m_LocalRotation: {x: -0, y: -0.9952208, z: -0, w: -0.09765031}
+  m_LocalPosition: {x: -2.05, y: 1.45, z: 5.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4500,7 +4524,7 @@ Transform:
   - {fileID: 7128889303296050611}
   - {fileID: 501781173}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -191.208, z: 0}
 --- !u!23 &5852412696393252143
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5009,7 +5033,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Fireball: {fileID: 9065369149234107308, guid: 7400f0a7947cf2b4594663ba49e7d29f, type: 3}
   WaterProj: {fileID: 9065369149234107308, guid: 202dc9e1c18cc81489a57e288dc2027d, type: 3}
-  Psychic: {fileID: 0}
+  Psychic: {fileID: 9065369149234107308, guid: ba3277712cfdd2b429e51e2d5878d7c7, type: 3}
   Lightning: {fileID: 3253121435567775425, guid: d37bf4478ebe769498e95c6625e2133f, type: 3}
   fireballBorder: {fileID: 808462489}
   waterProjBorder: {fileID: 869174934}
