@@ -63,4 +63,12 @@ public class PlayerMovement : MonoBehaviour
         Vector3 finalMove = move * speed + new Vector3(0, velocity.y, 0);
         controller.Move(finalMove * Time.deltaTime);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Portal"))
+        {
+            
+        }
+    }
 }

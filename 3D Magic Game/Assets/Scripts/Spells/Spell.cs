@@ -6,8 +6,13 @@ public class Spell : MonoBehaviour
 {
     public SpellScriptableObject spellToCast;
 
+    private PlayerMagicSystem playerMagicSystem;
+    private GameObject owner;
+
     private SphereCollider myCollider;
     private Rigidbody rb;
+
+    public bool isCorrectSpell;
 
     private void Awake()
     {
@@ -23,13 +28,18 @@ public class Spell : MonoBehaviour
         //destroy after a few seconds
         Destroy(this.gameObject, spellToCast.Lifetime);
     }
+    public void Initialize(GameObject owner, PlayerMagicSystem pms)
+    {
+        this.owner = owner;
+        this.playerMagicSystem = pms;
+    }
 
     private void Start()
     {
         RaycastHit hit;
         float maxAimDistance = 100f;
 
-        // If we hit something, look at the hit point. Otherwise use camera forward.
+        //if hit, spell goes to hit point, otherwise use camera.forward.
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, maxAimDistance))
         {
             float distanceToHit = Vector3.Distance(Camera.main.transform.position, hit.point);
@@ -39,13 +49,13 @@ public class Spell : MonoBehaviour
             }
             else
             {
-                // Hit too close — align with camera forward so it flies straight ahead
+                //hit too close = camera.forward
                 transform.rotation = Camera.main.transform.rotation;
             }
         }
         else
         {
-            // No hit: point the spell along the camera forward vector
+            //no hit = camera.forward
             transform.rotation = Camera.main.transform.rotation;
         }
     }
@@ -64,17 +74,32 @@ public class Spell : MonoBehaviour
         //apply hit effects
         //apply sfx
 
-        //apply damage
-        if (other.CompareTag("Enemy"))
+        EnemyAI hitEnemy = other.GetComponentInParent<EnemyAI>();
+        if (hitEnemy == null)
         {
-            EnemyAI enemy = other.GetComponent<EnemyAI>();
-            enemy.health -= spellToCast.Damage;
+            // destroy if not an enemy
+            Destroy(this.gameObject);
+            return;
         }
 
-        if(other.gameObject.CompareTag("Player"))
+        //ensure there is a reference to player magic system
+        if (playerMagicSystem == null)
+            playerMagicSystem = FindFirstObjectByType<PlayerMagicSystem>();
+
+        // determine if the spell matches the enemy type
+        isCorrectSpell = false;
+        if (hitEnemy.fireGolem && playerMagicSystem.fireBorder) isCorrectSpell = true;
+        if (hitEnemy.waterGolem && playerMagicSystem.waterBorder) isCorrectSpell = true;
+        if (hitEnemy.lightningGolem && playerMagicSystem.lightBorder) isCorrectSpell = true;
+        if (hitEnemy.psychicGolem && playerMagicSystem.psychBorder) isCorrectSpell = true;
+
+        if (isCorrectSpell)
         {
-            PlayerHealth pHealth = other.GetComponent<PlayerHealth>();
-            pHealth.health -= spellToCast.Damage;
+            hitEnemy.health -= spellToCast.Damage;
+        }
+        else
+        {
+            Debug.Log("Wrong element — no damage applied.");
         }
 
         Destroy(this.gameObject);

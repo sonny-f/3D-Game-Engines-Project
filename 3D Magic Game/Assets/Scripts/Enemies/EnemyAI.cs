@@ -1,14 +1,30 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem.Processors;
 
 public class EnemyAI : MonoBehaviour
 {
     [Header("General")]
+    public bool fireGolem;
+    public bool waterGolem;
+    public bool lightningGolem;
+    public bool psychicGolem;
+    private bool isDying = false;
+    //references
+    public GameObject enemyPrefab;
+    public Transform spawnPoint;
+    public GameObject pinkLight;
+    public GameObject redLight;
+    public GameObject yellowLight;
+    public GameObject blueLight;
+    [Space(10)]
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
     public float health = 100f;
     public Animator animator;
+
+    [HideInInspector] public SpawnController spawnController;
 
     [Header("Patroling")]
     public Vector3 walkPoint;
@@ -33,6 +49,25 @@ public class EnemyAI : MonoBehaviour
 
         agent.updatePosition = true;
         agent.updateRotation = true;
+
+        fireGolem = waterGolem = lightningGolem = psychicGolem = false;
+
+        int random = Random.Range(0, 4);
+
+        switch(random)
+        {
+            case 0: fireGolem = true; redLight.SetActive(true);
+                break;
+            case 1:
+                waterGolem = true; blueLight.SetActive(true);
+                break;
+            case 2:
+                lightningGolem = true; yellowLight.SetActive(true);
+                break;
+            case 3:
+                psychicGolem = true; pinkLight.SetActive(true);
+                break;
+        }
     }
 
     private void Update()
@@ -56,15 +91,18 @@ public class EnemyAI : MonoBehaviour
             AttackPlayer();
         }
 
-        if (health <= 0)
+        if (health <= 0 && !isDying)
         {
-            Invoke(nameof(DestroyEnemy), .5f);
+            //set dying so it doesn't repeat
+            isDying = true;
+            animator.SetBool("isDead", true);
+            Invoke(nameof(DestroyEnemy), 3f);
         }
     }
 
     private void Patroling()
     {
-        animator.SetFloat("Speed", agent.velocity.magnitude);
+        animator.SetBool("isWalking", true);
 
         if (!walkPointSet)
         {
@@ -105,10 +143,13 @@ public class EnemyAI : MonoBehaviour
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
+        animator.SetBool("isWalking", true);
     }
 
     private void AttackPlayer()
     {
+        animator.SetBool("isWalking", false);
+
         //Make sure enemy doesn't move
         agent.SetDestination(transform.position);
 
@@ -116,7 +157,7 @@ public class EnemyAI : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            //Attack code here
+            //fire boulder
             Instantiate(projectile, castPoint.position, castPoint.rotation);
 
             alreadyAttacked = true;
@@ -131,15 +172,9 @@ public class EnemyAI : MonoBehaviour
 
     private void DestroyEnemy()
     {
+        // notify central spawner to create a single replacement
+        spawnController.OnEnemyDeath();
+
         Destroy(this.gameObject);
-    }
-
-    void OnAnimatorMove()
-    {
-        // Completely ignore animation movement
-        animator.ApplyBuiltinRootMotion();
-
-        // Force model to stay at agent position
-        transform.position = agent.nextPosition;
     }
 }

@@ -8,6 +8,10 @@ public class PlayerMagicSystem : MonoBehaviour
     public GameObject Psychic;
     public GameObject Lightning;
     [Space(10)]
+    public bool fireBorder;
+    public bool waterBorder;
+    public bool lightBorder;
+    public bool psychBorder;
     public GameObject fireballBorder;
     public GameObject waterProjBorder;
     public GameObject lightningBorder;
@@ -69,7 +73,7 @@ public class PlayerMagicSystem : MonoBehaviour
         {
             castTimer += Time.deltaTime;
 
-            if(castTimer > timeBetweenCasts)
+            if (castTimer > timeBetweenCasts)
             {
                 castingMagic = false;
             }
@@ -80,25 +84,25 @@ public class PlayerMagicSystem : MonoBehaviour
         if (currentMana < maxMana && !castingMagic)
         {
             currentMana += manaRegenRate * Time.deltaTime;
-            if(currentMana > maxMana)
+            if (currentMana > maxMana)
             {
                 currentMana = maxMana;
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             ShootFireball();
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             ShootWaterProj();
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha3))
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             ShootLightning();
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha4))
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             ShootPsychic();
         }
@@ -111,12 +115,17 @@ public class PlayerMagicSystem : MonoBehaviour
 
     public void ShootFireball()
     {
-        spellToCast = Fireball.GetComponent<Spell>();
+        fireBorder = true;
+        waterBorder = false;
+        lightBorder = false;
+        psychBorder = false;
 
-        lightningBorder.SetActive(false);
         fireballBorder.SetActive(true);
         waterProjBorder.SetActive(false);
+        lightningBorder.SetActive(false);
         psychicBorder.SetActive(false);
+
+        spellToCast = Fireball.GetComponent<Spell>();
 
         staffColourFire.SetActive(true);
         staffColourWater.SetActive(false);
@@ -126,12 +135,17 @@ public class PlayerMagicSystem : MonoBehaviour
 
     public void ShootWaterProj()
     {
-        spellToCast = WaterProj.GetComponent<Spell>();
+        waterBorder = true;
+        fireBorder = false;
+        lightBorder = false;
+        psychBorder = false;
 
-        lightningBorder.SetActive(false);
-        fireballBorder.SetActive(false);
         waterProjBorder.SetActive(true);
+        fireballBorder.SetActive(false);
+        lightningBorder.SetActive(false);
         psychicBorder.SetActive(false);
+
+        spellToCast = WaterProj.GetComponent<Spell>();
 
         staffColourFire.SetActive(false);
         staffColourWater.SetActive(true);
@@ -141,12 +155,17 @@ public class PlayerMagicSystem : MonoBehaviour
 
     public void ShootLightning()
     {
-        spellToCast = Lightning.GetComponent<Spell>();
+        lightBorder = true;
+        waterBorder = false;
+        fireBorder = false;
+        psychBorder = false;
 
         lightningBorder.SetActive(true);
         fireballBorder.SetActive(false);
         waterProjBorder.SetActive(false);
         psychicBorder.SetActive(false);
+
+        spellToCast = Lightning.GetComponent<Spell>();
 
         staffColourFire.SetActive(false);
         staffColourWater.SetActive(false);
@@ -156,12 +175,17 @@ public class PlayerMagicSystem : MonoBehaviour
 
     public void ShootPsychic()
     {
-        spellToCast = Psychic.GetComponent<Spell>();
+        psychBorder = true;
+        waterBorder = false;
+        fireBorder = false;
+        lightBorder = false;
 
-        lightningBorder.SetActive(false);
+        psychicBorder.SetActive(true);
         fireballBorder.SetActive(false);
         waterProjBorder.SetActive(false);
-        psychicBorder.SetActive(true);
+        lightningBorder.SetActive(false);
+
+        spellToCast = Psychic.GetComponent<Spell>();
 
         staffColourFire.SetActive(false);
         staffColourWater.SetActive(false);

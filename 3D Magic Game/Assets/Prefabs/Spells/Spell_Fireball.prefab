@@ -24301,5 +24301,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellToCast: {fileID: 11400000, guid: c1bc9c4c3c088b8469c9d32b614055a7, type: 2}
-  enemy: {fileID: 8853400796821145127, guid: 7ac587ad390587b4398e747c1fec267d, type: 3}
-  pHealth: {fileID: 2522549259645922899, guid: efcbfbaf0750ed34baff766b412880dc, type: 3}
+  enemy: {fileID: 7706452877976473385, guid: f2175b8133973db4e8a98e4a79db9fe8, type: 3}
+  playerMagicSystem: {fileID: 5719990426849753248, guid: 79498d038d95a12489e3fbbf75d4e7d8, type: 3}
