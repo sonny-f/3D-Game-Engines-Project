@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [Space(10)]
     public Camera playerCamera;
     public GameObject pauseMenu;
+    public Animator playerAnimator;
 
     [Header("Air Control")]
     [Tooltip("Fraction of ground speed allowed while airborne (0 = no control, 1 = full control)")]
@@ -44,8 +45,8 @@ public class PlayerMovement : MonoBehaviour
             Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 60f, Time.deltaTime * 5f);
         }
 
-            //horizontal input
-            Vector3 move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
+        //horizontal input
+        Vector3 move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
 
         //ensure a small downward force when grounded
         if (controller.isGrounded && velocity.y < 0)
@@ -66,7 +67,16 @@ public class PlayerMovement : MonoBehaviour
         Vector3 finalMove = move * speed + new Vector3(0, velocity.y, 0);
         controller.Move(finalMove * Time.deltaTime);
 
-        if(Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.P))
+        if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+        {
+            playerAnimator.SetBool("isWalking", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("isWalking", false);
+        }
+
+        if (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.P))
         {
             pauseMenu.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
@@ -77,6 +87,8 @@ public class PlayerMovement : MonoBehaviour
     public void ResumeGame()
     {
         pauseMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void OnTriggerEnter(Collider other)
