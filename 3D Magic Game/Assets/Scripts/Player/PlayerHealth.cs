@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     public float health = 100f;
+
+    public Image healthBar;
 
     private void Start()
     {
@@ -15,6 +18,13 @@ public class PlayerHealth : MonoBehaviour
         {
             DestroyPlayer();
         }
+
+        if(health > 100f)
+        {
+            health = 100f;
+        }
+
+        healthBar.fillAmount = health / 100f;
     }
 
     private void DestroyPlayer()

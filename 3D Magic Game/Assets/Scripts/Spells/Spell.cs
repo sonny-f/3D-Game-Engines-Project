@@ -97,10 +97,6 @@ public class Spell : MonoBehaviour
         {
             hitEnemy.health -= spellToCast.Damage;
         }
-        else
-        {
-            Debug.Log("Wrong element — no damage applied.");
-        }
 
         Destroy(this.gameObject);
     }

@@ -168,6 +168,7 @@ MonoBehaviour:
     m_Bits: 128
   health: 100
   animator: {fileID: 7540693056428865623}
+  playerHealth: {fileID: 3053749488820276601, guid: 79498d038d95a12489e3fbbf75d4e7d8, type: 3}
   spawnController: {fileID: 0}
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 25

@@ -24,6 +24,7 @@ public class EnemyAI : MonoBehaviour
     public float health = 100f;
     public Animator animator;
 
+    public PlayerHealth playerHealth;
     [HideInInspector] public SpawnController spawnController;
 
     [Header("Patroling")]
@@ -174,6 +175,8 @@ public class EnemyAI : MonoBehaviour
     {
         // notify central spawner to create a single replacement
         spawnController.OnEnemyDeath();
+        playerHealth.health = health + 20f;
+
 
         Destroy(this.gameObject);
     }

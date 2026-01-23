@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMagicSystem : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class PlayerMagicSystem : MonoBehaviour
     [SerializeField] private float timeBetweenCasts = 0.25f;
     private float castTimer;
     private bool castingMagic = false;
+    public Image manaBar;
 
     [SerializeField] private Transform castPoint;
 
@@ -56,6 +58,8 @@ public class PlayerMagicSystem : MonoBehaviour
 
     private void Update()
     {
+        manaBar.fillAmount = currentMana / maxMana;
+
         bool isSpellCastHeldDown = controls.Player.SpellCast.ReadValue<float>() > 0.1;
         bool isNotBroke = currentMana - spellToCast.spellToCast.manaCost >= 0;
 

@@ -21,5 +21,14 @@ public class CameraController : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.parent.Rotate(Vector3.up * mouseX);
+
+        if(Time.timeScale == 0f)
+        {
+            sensitivity = 0f;
+        }
+        else
+        {
+            sensitivity = 2f;
+        }
     }
 }

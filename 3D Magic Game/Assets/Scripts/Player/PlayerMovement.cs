@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float sprintSpeed = 5f;
     [Space(10)]
     public Camera playerCamera;
+    public GameObject pauseMenu;
 
     [Header("Air Control")]
     [Tooltip("Fraction of ground speed allowed while airborne (0 = no control, 1 = full control)")]
@@ -26,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         horizontalVelocity = Vector3.zero;
+        pauseMenu.SetActive(false);
     }
 
     private void Update()
@@ -62,13 +65,30 @@ public class PlayerMovement : MonoBehaviour
         //apply final movement
         Vector3 finalMove = move * speed + new Vector3(0, velocity.y, 0);
         controller.Move(finalMove * Time.deltaTime);
+
+        if(Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.P))
+        {
+            pauseMenu.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
+        if(pauseMenu.activeSelf)
+        {
+            Time.timeScale = 0f;
+        }
+    }
+
+    public void ResumeGame()
+    {
+        pauseMenu.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Portal"))
         {
-            
+            SceneManager.LoadScene("End");
         }
     }
 }
