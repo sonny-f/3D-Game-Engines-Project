@@ -22,10 +22,12 @@ public class EnemyAI : MonoBehaviour
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
     public float health = 100f;
+    public float maxHealth = 100f;
     public Animator animator;
 
     public PlayerHealth playerHealth;
     [HideInInspector] public SpawnController spawnController;
+    [SerializeField] EnemyHealthBar enemyHealthBar;
 
     [Header("Patroling")]
     public Vector3 walkPoint;
@@ -69,6 +71,14 @@ public class EnemyAI : MonoBehaviour
                 psychicGolem = true; pinkLight.SetActive(true);
                 break;
         }
+
+        if(playerHealth == null)
+        {
+            playerHealth = FindAnyObjectByType<PlayerHealth>();
+        }
+
+        enemyHealthBar.GetComponentInChildren<EnemyHealthBar>();
+        enemyHealthBar.UpdateHealthBar(health, maxHealth);
     }
 
     private void Update()
@@ -175,9 +185,16 @@ public class EnemyAI : MonoBehaviour
     {
         // notify central spawner to create a single replacement
         spawnController.OnEnemyDeath();
-        playerHealth.health = health + 20f;
 
+        playerHealth = FindAnyObjectByType<PlayerHealth>();
+        playerHealth.AddHealth(20f);
 
         Destroy(this.gameObject);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        enemyHealthBar.UpdateHealthBar(health, maxHealth);
     }
 }

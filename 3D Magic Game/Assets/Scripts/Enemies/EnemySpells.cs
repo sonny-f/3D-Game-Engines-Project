@@ -42,7 +42,7 @@ public class EnemySpells : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             PlayerHealth pHealth = other.GetComponent<PlayerHealth>();
-            pHealth.health -= spellToCast.Damage;
+            pHealth.currentHealth -= spellToCast.Damage;
         }
 
         Destroy(this.gameObject);

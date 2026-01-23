@@ -811,6 +811,8 @@ MonoBehaviour:
   gravity: -9.81
   sprintSpeed: 10
   playerCamera: {fileID: 0}
+  pauseMenu: {fileID: 0}
+  playerAnimator: {fileID: 0}
   airControl: 0.6
   airAcceleration: 6
 --- !u!114 &5719990426849753248
@@ -829,10 +831,6 @@ MonoBehaviour:
   WaterProj: {fileID: 9065369149234107308, guid: 202dc9e1c18cc81489a57e288dc2027d, type: 3}
   Psychic: {fileID: 9065369149234107308, guid: ba3277712cfdd2b429e51e2d5878d7c7, type: 3}
   Lightning: {fileID: 3253121435567775425, guid: d37bf4478ebe769498e95c6625e2133f, type: 3}
-  fireBorder: 0
-  waterBorder: 0
-  lightBorder: 0
-  psychBorder: 0
   fireballBorder: {fileID: 2012502193910590853, guid: 0928a7ecfa29f1b46bd8334501230e51, type: 3}
   waterProjBorder: {fileID: 412275293445007017, guid: 9a46d5a675b89314e9b6401d1940c8d6, type: 3}
   lightningBorder: {fileID: 8200703203699829823, guid: b227bac1d8e48b6448b46f2df11645c8, type: 3}
@@ -846,6 +844,8 @@ MonoBehaviour:
   currentMana: 100
   manaRegenRate: 5
   timeBetweenCasts: 0.25
+  manaBar: {fileID: 0}
+  spellCastSound: {fileID: 0}
   castPoint: {fileID: 3135218573955622682}
 --- !u!114 &3053749488820276601
 MonoBehaviour:
@@ -859,7 +859,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12c62cacd705adf4d96060391ea153e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  totalHealth: 100
+  currentHealth: 100
+  healthBar: {fileID: 0}
 --- !u!1 &5050460874705498013
 GameObject:
   m_ObjectHideFlags: 0

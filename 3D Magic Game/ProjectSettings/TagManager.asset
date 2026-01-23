@@ -7,6 +7,7 @@ TagManager:
   - Spell
   - Enemy
   - Portal
+  - EnemyHealthBar
   layers:
   - Default
   - TransparentFX

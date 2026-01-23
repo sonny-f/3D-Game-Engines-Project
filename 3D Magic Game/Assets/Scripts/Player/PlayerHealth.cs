@@ -4,33 +4,43 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public float health = 100f;
+    public float totalHealth = 100f;
+    public float currentHealth;
 
     public Image healthBar;
 
-    private void Start()
+    private void Awake()
     {
-        health = 100f;
+        currentHealth = totalHealth;
     }
 
     private void Update()
     {
-        if(health <= 0f)
+        if(currentHealth <= 0f)
         {
             DestroyPlayer();
         }
 
-        if(health > 100f)
+        if(currentHealth > totalHealth)
         {
-            health = 100f;
+            currentHealth = totalHealth;
         }
 
-        healthBar.fillAmount = health / 100f;
+        healthBar.fillAmount = currentHealth / totalHealth;
     }
 
     private void DestroyPlayer()
     {
         SceneManager.LoadScene("Death");
         Destroy(this.gameObject);
+    }
+
+    public void AddHealth(float amount)
+    {
+        if(currentHealth <= totalHealth)
+        {
+            currentHealth += amount;
+        }
+
     }
 }

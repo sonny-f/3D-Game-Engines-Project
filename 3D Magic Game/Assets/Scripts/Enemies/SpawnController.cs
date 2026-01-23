@@ -32,7 +32,7 @@ public class SpawnController : MonoBehaviour
 
     private void Update()
     {
-        if(replacementsSpawned == 9)
+        if(replacementsSpawned == 8)
         {
             portal.isTrigger = true;
             portalMat.SetFloat("_PortalFade", 1f);
@@ -41,7 +41,6 @@ public class SpawnController : MonoBehaviour
         else
         {
             portal.isTrigger = false;
-            portalMat.SetFloat("_PortalFade", 0f);
             portalRock.SetActive(true);
         }
     }
@@ -74,6 +73,7 @@ public class SpawnController : MonoBehaviour
         if (spawned != null)
         {
             replacementsSpawned++;
+            portalMat.SetFloat("_PortalFade", 1f / (8 - replacementsSpawned));
             currentEnemy = spawned;
             NewEnemy(spawned);
         }

@@ -95,7 +95,7 @@ public class Spell : MonoBehaviour
 
         if (isCorrectSpell)
         {
-            hitEnemy.health -= spellToCast.Damage;
+            hitEnemy.TakeDamage(spellToCast.Damage);
         }
 
         Destroy(this.gameObject);
