@@ -1,7 +1,9 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +11,12 @@ public class GameManager : MonoBehaviour
     public Camera overlayCam;
     public GameObject settingsMenu;
     public GameObject pauseMenu;
+    public TMP_Dropdown graphicsDropdown;
+
+    public void SetQuality(int qualityIndex)
+    {
+        QualitySettings.SetQualityLevel(qualityIndex);
+    }
 
     public void Play()
     {
@@ -23,15 +31,6 @@ public class GameManager : MonoBehaviour
     public void ReturnToMenu()
     {
         SceneManager.LoadScene("MainMenu");
-    }
-
-    public void ApplyPost(bool toggleValue)
-    {
-        UnityEngine.Rendering.Universal.UniversalAdditionalCameraData uac = gameObject.GetComponent<UnityEngine.Rendering.Universal.UniversalAdditionalCameraData>();
-        if(toggleValue == false)
-            uac.renderPostProcessing = false;
-        else
-            uac.renderPostProcessing = true;
     }
 
     public void SettingsMenu()
@@ -50,5 +49,30 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 1f;
         }
+
+        if(SceneManager.GetActiveScene().name == "End" || SceneManager.GetActiveScene().name == "Death")
+        {
+            pauseMenu.SetActive(false);
+            settingsMenu.SetActive(false);
+        }
+        else if(SceneManager.GetActiveScene().name == "MainMenu")
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
+            {
+                pauseMenu.SetActive(false);
+            }
+        }
+
+        if(Time.timeScale ==1f)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+
+    public void BackButton()
+    {
+        settingsMenu.SetActive(false);
+        pauseMenu.SetActive(true);
     }
 }

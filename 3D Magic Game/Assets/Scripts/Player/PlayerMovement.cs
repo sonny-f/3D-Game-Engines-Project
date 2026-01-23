@@ -72,11 +72,6 @@ public class PlayerMovement : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-
-        if(pauseMenu.activeSelf)
-        {
-            Time.timeScale = 0f;
-        }
     }
 
     public void ResumeGame()

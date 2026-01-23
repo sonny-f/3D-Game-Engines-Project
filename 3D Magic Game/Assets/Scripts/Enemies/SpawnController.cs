@@ -14,6 +14,9 @@ public class SpawnController : MonoBehaviour
     // current active enemy instance under this controller
     private GameObject currentEnemy;
 
+    public Material portalMat;
+    public GameObject portalRock;
+
     [Tooltip("If true, spawn the first enemy at Start")]
     public bool spawnInitialAtStart = true;
 
@@ -29,13 +32,17 @@ public class SpawnController : MonoBehaviour
 
     private void Update()
     {
-        if(replacementsSpawned == 8)
+        if(replacementsSpawned == 9)
         {
             portal.isTrigger = true;
+            portalMat.SetFloat("_PortalFade", 1f);
+            portalRock.SetActive(false);
         }
         else
         {
             portal.isTrigger = false;
+            portalMat.SetFloat("_PortalFade", 0f);
+            portalRock.SetActive(true);
         }
     }
 
