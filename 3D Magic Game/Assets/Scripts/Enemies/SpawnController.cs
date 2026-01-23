@@ -26,8 +26,6 @@ public class SpawnController : MonoBehaviour
     {
         if (spawnInitialAtStart)
             SpawnNew();
-
-        portal = FindAnyObjectByType<Collider>();
     }
 
     private void Update()

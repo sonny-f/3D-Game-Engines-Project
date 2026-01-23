@@ -22,7 +22,7 @@ public class PlayerMagicSystem : MonoBehaviour
     [SerializeField] private Spell spellToCast;
     [SerializeField] private float maxMana = 100f;
     [SerializeField] private float currentMana;
-    [SerializeField] private float manaRegenRate = 2f;
+    public float manaRegenRate = 5f;
     [SerializeField] private float timeBetweenCasts = 0.25f;
     private float castTimer;
     private bool castingMagic = false;

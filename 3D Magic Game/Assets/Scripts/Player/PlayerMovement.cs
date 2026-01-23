@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public Camera playerCamera;
     public GameObject pauseMenu;
     public Animator playerAnimator;
+    public PlayerMagicSystem playerMagicSystem;
 
     [Header("Air Control")]
     [Tooltip("Fraction of ground speed allowed while airborne (0 = no control, 1 = full control)")]
@@ -70,10 +71,12 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
         {
             playerAnimator.SetBool("isWalking", true);
+            playerMagicSystem.manaRegenRate = 5f;
         }
         else
         {
             playerAnimator.SetBool("isWalking", false);
+            playerMagicSystem.manaRegenRate = 8.5f;
         }
 
         if (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.P))

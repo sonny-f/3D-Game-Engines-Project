@@ -9994,6 +9994,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1279258560 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5719990426849753248, guid: 79498d038d95a12489e3fbbf75d4e7d8, type: 3}
+  m_PrefabInstance: {fileID: 2467045434612616479}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428786405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dc238b600f595341abafb74be04ddb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1281789519
 GameObject:
   m_ObjectHideFlags: 0
@@ -16735,6 +16746,10 @@ PrefabInstance:
       propertyPath: playerAnimator
       value: 
       objectReference: {fileID: 2114762318}
+    - target: {fileID: 8589305175148791926, guid: 79498d038d95a12489e3fbbf75d4e7d8, type: 3}
+      propertyPath: playerMagicSystem
+      value: 
+      objectReference: {fileID: 1279258560}
     - target: {fileID: 8629496353814416707, guid: 79498d038d95a12489e3fbbf75d4e7d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 51.520294
