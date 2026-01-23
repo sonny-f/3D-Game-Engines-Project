@@ -9,10 +9,6 @@ public class PlayerMagicSystem : MonoBehaviour
     public GameObject Psychic;
     public GameObject Lightning;
     [Space(10)]
-    public bool fireBorder;
-    public bool waterBorder;
-    public bool lightBorder;
-    public bool psychBorder;
     public GameObject fireballBorder;
     public GameObject waterProjBorder;
     public GameObject lightningBorder;
@@ -31,6 +27,7 @@ public class PlayerMagicSystem : MonoBehaviour
     private float castTimer;
     private bool castingMagic = false;
     public Image manaBar;
+    public AudioSource spellCastSound;
 
     [SerializeField] private Transform castPoint;
 
@@ -115,15 +112,11 @@ public class PlayerMagicSystem : MonoBehaviour
     void CastSpell()
     {
         Instantiate(spellToCast, castPoint.position, castPoint.rotation);
+        spellCastSound.Play();
     }
 
     public void ShootFireball()
-    {
-        fireBorder = true;
-        waterBorder = false;
-        lightBorder = false;
-        psychBorder = false;
-
+    { 
         fireballBorder.SetActive(true);
         waterProjBorder.SetActive(false);
         lightningBorder.SetActive(false);
@@ -139,11 +132,6 @@ public class PlayerMagicSystem : MonoBehaviour
 
     public void ShootWaterProj()
     {
-        waterBorder = true;
-        fireBorder = false;
-        lightBorder = false;
-        psychBorder = false;
-
         waterProjBorder.SetActive(true);
         fireballBorder.SetActive(false);
         lightningBorder.SetActive(false);
@@ -159,11 +147,6 @@ public class PlayerMagicSystem : MonoBehaviour
 
     public void ShootLightning()
     {
-        lightBorder = true;
-        waterBorder = false;
-        fireBorder = false;
-        psychBorder = false;
-
         lightningBorder.SetActive(true);
         fireballBorder.SetActive(false);
         waterProjBorder.SetActive(false);
@@ -179,11 +162,6 @@ public class PlayerMagicSystem : MonoBehaviour
 
     public void ShootPsychic()
     {
-        psychBorder = true;
-        waterBorder = false;
-        fireBorder = false;
-        lightBorder = false;
-
         psychicBorder.SetActive(true);
         fireballBorder.SetActive(false);
         waterProjBorder.SetActive(false);

@@ -88,10 +88,10 @@ public class Spell : MonoBehaviour
 
         // determine if the spell matches the enemy type
         isCorrectSpell = false;
-        if (hitEnemy.fireGolem && playerMagicSystem.fireBorder) isCorrectSpell = true;
-        if (hitEnemy.waterGolem && playerMagicSystem.waterBorder) isCorrectSpell = true;
-        if (hitEnemy.lightningGolem && playerMagicSystem.lightBorder) isCorrectSpell = true;
-        if (hitEnemy.psychicGolem && playerMagicSystem.psychBorder) isCorrectSpell = true;
+        if (hitEnemy.fireGolem && playerMagicSystem.fireballBorder.activeSelf) isCorrectSpell = true;
+        if (hitEnemy.waterGolem && playerMagicSystem.waterProjBorder.activeSelf) isCorrectSpell = true;
+        if (hitEnemy.lightningGolem && playerMagicSystem.lightningBorder.activeSelf) isCorrectSpell = true;
+        if (hitEnemy.psychicGolem && playerMagicSystem.psychicBorder.activeSelf) isCorrectSpell = true;
 
         if (isCorrectSpell)
         {
