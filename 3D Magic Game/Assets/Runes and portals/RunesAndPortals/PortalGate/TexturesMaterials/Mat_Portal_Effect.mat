@@ -114,7 +114,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _PortalFade: 0.2
+    - _PortalFade: 0.14285715
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
