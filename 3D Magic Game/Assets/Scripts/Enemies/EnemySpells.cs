@@ -45,6 +45,12 @@ public class EnemySpells : MonoBehaviour
             pHealth.currentHealth -= spellToCast.Damage;
         }
 
-        Destroy(this.gameObject);
+        //return if hit another spell
+        if (other.gameObject.CompareTag("Spell"))
+        {
+            return;
+        }
+
+            Destroy(this.gameObject);
     }
 }

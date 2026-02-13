@@ -98,6 +98,12 @@ public class Spell : MonoBehaviour
             hitEnemy.TakeDamage(spellToCast.Damage);
         }
 
+        //return if hit another spell
+        if (other.gameObject.CompareTag("EnemySpell"))
+        {
+            return;
+        }
+
         Destroy(this.gameObject);
     }
 }

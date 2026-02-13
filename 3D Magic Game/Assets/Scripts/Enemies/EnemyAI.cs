@@ -10,6 +10,7 @@ public class EnemyAI : MonoBehaviour
     public bool lightningGolem;
     public bool psychicGolem;
     private bool isDying = false;
+    private bool canAttack;
     //references
     public GameObject enemyPrefab;
     public Transform spawnPoint;
@@ -79,6 +80,8 @@ public class EnemyAI : MonoBehaviour
 
         enemyHealthBar.GetComponentInChildren<EnemyHealthBar>();
         enemyHealthBar.UpdateHealthBar(health, maxHealth);
+
+        canAttack = true;
     }
 
     private void Update()
@@ -97,7 +100,7 @@ public class EnemyAI : MonoBehaviour
             ChasePlayer();
         }
 
-        if (playerInSightRange && playerInAttackRange)
+        if (playerInSightRange && playerInAttackRange && canAttack)
         {
             AttackPlayer();
         }
@@ -105,6 +108,7 @@ public class EnemyAI : MonoBehaviour
         if (health <= 0 && !isDying)
         {
             //set dying so it doesn't repeat
+            canAttack = false;
             isDying = true;
             animator.SetBool("isDead", true);
             Invoke(nameof(DestroyEnemy), 3f);
